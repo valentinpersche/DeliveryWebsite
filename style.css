@@ -19,7 +19,7 @@
 
 .restaurantName {
   font-size: 60px;
-  padding-top: 50px;
+  padding-top: 60px;
 }
 
 .menueBar {
@@ -42,35 +42,62 @@
 .menueBarLink:hover {
   background: linear-gradient(
     to right,
-    red 33.33%,
+    green 33.33%,
     white 33.33% 66.66%,
-    green 66.66%
+    rgb(190, 0, 0) 66.66%
   );
   border-radius: 3px;
 }
 
 .dishCard {
-    margin: 20px 1px 20px 10px;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px 0px, rgba(0, 0, 0, 0.3) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 0px 4px 0px;
-    border-radius: 10px;
-    padding: 10px;
+  margin: 20px 30px 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px 0px,
+    rgba(0, 0, 0, 0.3) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 0px 4px 0px;
+  border-radius: 10px;
+  padding: 10px;
 }
 
+.dishCard:hover {
+  background-color: rgb(245, 245, 245);
+}
 .dishCardButtonContainer {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .dishCardButton {
-   border: none;
-   background-color: white;
-   font-size: 18px;
-   font-weight: 400;
-   border-radius: 50%;
-   border: 1px solid rgba(0, 0, 0, 0.3);
-   color: #fa8e00
+  border: none;
+  background-color: white;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: #fa8e00;
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dishCardButton:hover {
-    background-color: rgb(225, 223, 223);
+  background-color: rgb(240, 240, 240);
+}
+
+.dishCardTitle {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.dishCardDescription {
+  padding-top: 5px;
+  font-size: 18px;
+}
+
+.dishCardPrice {
+  padding-top: 10px;
+  color: #fa8e00;
+  font-size: 18px;
+  font-weight: 400;
 }

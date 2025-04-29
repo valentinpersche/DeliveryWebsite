@@ -13,15 +13,17 @@
   width: 140px;
   height: 140px;
   object-fit: cover;
+  object-position: top;
   position: absolute;
   top: 350px;
+  border-radius: 50%;
 }
 
 .sectionPicture {
-
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-    margin-top: 30px;
+  height: 200px;
+  width: calc(100% - 30px);
+  object-fit: cover;
+  object-position: center;
+  margin-top: 30px;
+  padding-left: 30px;
 }

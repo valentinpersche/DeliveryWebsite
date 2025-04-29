@@ -1,6 +1,7 @@
 * {
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat';
-    font-weight: 200;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat";
+  font-weight: 200;
+  scroll-behavior: smooth;
 }

@@ -1,8 +1,12 @@
 function getSectionTemplate(section) {
-    return `
+  return `
         <section class="${section.category}" id="${section.category}">
-            <img class="sectionPicture" src="${section.image}" alt="Picture of ${section.category}">
-            ${section.items.map(dish => `
+            <img class="sectionPicture" src="${
+              section.image
+            }" alt="Picture of ${section.category}">
+            ${section.items
+              .map(
+                (dish) => `
                 <div class="dishCard">
                     <div class="dishCardButtonContainer">
                         <button class="dishCardButton">+</button>
@@ -11,7 +15,9 @@ function getSectionTemplate(section) {
                     <h3 class="dishCardDescription">${dish.description}</h3>
                     <h3 class="dishCardPrice">${dish.price.toFixed(2)}€</h3>
                 </div>
-            `).join('')}
+            `
+              )
+              .join("")}
         </section>
     `;
 }
