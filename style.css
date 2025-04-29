@@ -23,24 +23,54 @@
 }
 
 .menueBar {
-    display: flex;
-    gap: 60px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    height: 40px;
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  height: 40px;
 }
 
 .menueBarLink {
-    text-decoration: none;
-    color: black;
-    font-size: 24px;
-    font-weight: 500;
-    padding: 4px;
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+  padding: 4px;
 }
 
 .menueBarLink:hover {
-    background: linear-gradient(to right, red 33.33%, white 33.33% 66.66%, green 66.66%);
-    border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    red 33.33%,
+    white 33.33% 66.66%,
+    green 66.66%
+  );
+  border-radius: 3px;
+}
 
+.dishCard {
+    margin: 20px 1px 20px 10px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px 0px, rgba(0, 0, 0, 0.3) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 0px 4px 0px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.dishCardButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dishCardButton {
+   border: none;
+   background-color: white;
+   font-size: 18px;
+   font-weight: 400;
+   border-radius: 50%;
+   border: 1px solid rgba(0, 0, 0, 0.3);
+   color: #fa8e00
+}
+
+.dishCardButton:hover {
+    background-color: rgb(225, 223, 223);
 }

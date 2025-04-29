@@ -1,7 +1,7 @@
 let myDishes = [
   {
-    category: "Pasta",
-    image: "",
+    category: "pastaSection",
+    image: "assets/img/pastaSection.jpg",
     items: [
       {
         name: "Spaghetti Bolognese",
@@ -27,7 +27,8 @@ let myDishes = [
     ],
   },
   {
-    category: "Pizza",
+    category: "pizzaSection",
+    image: "assets/img/pizzaSection.jpg",
     items: [
       {
         name: "Pizza Margherita",
@@ -52,7 +53,8 @@ let myDishes = [
     ],
   },
   {
-    category: "Salate",
+    category: "saladSection",
+    image: "assets/img/saladSection.jpg",
     items: [
       {
         name: "Caesar Salad",
@@ -72,7 +74,8 @@ let myDishes = [
     ],
   },
   {
-    category: "Getränke",
+    category: "drinkSection",
+    image: "assets/img/drinkSection.jpg",
     items: [
       {
         name: "Wasser",

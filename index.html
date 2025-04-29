@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lieferapp</title>
+    <title>Papa Mario's Cucina</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
     <link
       rel="shortcut icon"
       href="assets/img/Favicon/favicon.ico"
@@ -15,10 +14,11 @@
     <link rel="stylesheet" href="styles/standard.css" />
     <link rel="stylesheet" href="styles/basket.css" />
     <link rel="stylesheet" href="styles/fonts.css" />
+    <script src="script.js"></script>
     <script src="scripts/db.js"></script>
     <script src="scripts/template.js"></script>
   </head>
-  <body>
+  <body onload="renderMenuSections()">
     <header class="headerContainer">
       <img src="assets/img/Logo/Logo.png" alt="Logo" class="headerLogo" />
     </header>
@@ -30,10 +30,12 @@
             <h1 class="restaurantName">Papa Mario's Cucina</h1>
         </section>
         <section class="menueBar">
-            <a href="#" class="menueBarLink">Pasta</a>
-            <a href="#" class="menueBarLink">Pizza</a>
-            <a href="#" class="menueBarLink">Salate</a>
-            <a href="#" class="menueBarLink">Getränke</a>
+            <a href="#pastaSection" class="menueBarLink">Pasta</a>
+            <a href="#pizzaSection" class="menueBarLink">Pizza</a>
+            <a href="#saladSection" class="menueBarLink">Salate</a>
+            <a href="#drinkSection" class="menueBarLink">Getränke</a>
+        </section>
+        <section class="menuSection" id="menuSection">
         </section>
         </div>
     </main>
