@@ -6,10 +6,10 @@
   background-color: #fa8e00;
 }
 
-.headerLogo {
-  width: 100px;
+.contentWrapper {
+  width: calc(100% - 250px);
+  overflow: hidden;
 }
-
 .restaurantInfo {
   display: flex;
   flex-direction: column;
@@ -17,22 +17,30 @@
   height: auto;
 }
 
-.restaurantPicture {
-  width: 100%;
-  height: 380px;
-  object-fit: cover;
-  object-position: center 75%;
-}
-
-.restaurantLogo {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  position: absolute;
-  top: 350px;
-}
-
 .restaurantName {
   font-size: 60px;
   padding-top: 50px;
+}
+
+.menueBar {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    height: 40px;
+}
+
+.menueBarLink {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 4px;
+}
+
+.menueBarLink:hover {
+    background: linear-gradient(to right, red 33.33%, white 33.33% 66.66%, green 66.66%);
+    border-radius: 3px;
+
 }
