@@ -18,7 +18,7 @@
     <script src="scripts/db.js"></script>
     <script src="scripts/template.js"></script>
   </head>
-  <body onload="renderMenuSections()">
+  <body onload="init()">
     <header class="headerContainer">
       <img src="assets/img/Logo/Logo.png" alt="Logo" class="headerLogo" />
     </header>
@@ -38,6 +38,35 @@
         <section class="menuSection" id="menuSection">
         </section>
         </div>
+        <section class="basketSection" id="basketSection">
+            <div class="basketHeader">
+                <h1 class="basketTitle">Warenkorb</h1>
+            </div>
+            <div class="pickupSwitcher">
+                <div class="delivery-options">
+                    <div class="option delivery active" onclick="selectDeliveryOption('delivery')">
+                        <div class="option-icon">🛵</div>
+                        <div class="option-details">
+                            <div class="option-title">Lieferung</div>
+                            <div class="option-subtitle">20-40 min</div>
+                        </div>
+                    </div>
+                    <div class="option collection" onclick="selectDeliveryOption('collection')">
+                        <div class="option-icon">🏪</div>
+                        <div class="option-details">
+                            <div class="option-title">Abholen</div>
+                            <div class="option-subtitle">Verfügbar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="basketContent" class="basket-content">
+                
+            </div>
+        </section>
     </main>
+    <footer class="footerContainer">
+        <h1 class="footerTitle">Papa Mario's Cucina</h1>
+    </footer>
   </body>
 </html>

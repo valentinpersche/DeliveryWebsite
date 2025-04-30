@@ -1,3 +1,4 @@
+let basket = [];
 let myDishes = [
   {
     category: "pastaSection",
