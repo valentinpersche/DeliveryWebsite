@@ -1,15 +1,15 @@
-.headerLogo {
+.header-logo {
   width: 100px;
 }
 
-.restaurantPicture {
+.restaurant-picture {
   width: 100%;
   height: 380px;
   object-fit: cover;
   object-position: center 75%;
 }
 
-.restaurantLogo {
+.papa-mario-logo {
   width: 140px;
   height: 140px;
   object-fit: cover;
@@ -19,7 +19,7 @@
   border-radius: 50%;
 }
 
-.sectionPicture {
+.section-picture {
   height: 200px;
   width: calc(100% - 30px);
   object-fit: cover;
@@ -27,3 +27,4 @@
   margin-top: 30px;
   padding-left: 30px;
 }
+

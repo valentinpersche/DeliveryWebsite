@@ -1,24 +1,22 @@
-.basketSection {
+.basket-section {
   width: 300px;
   height: 100vh;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px 0px,
-    rgba(0, 0, 0, 0.3) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 0px 4px 0px;
+  box-shadow: rgba(0, 0, 0, 0.4) -1px 0px 10px -3px;
   position: sticky;
   top: 0;
   display: flex;
   flex-direction: column;
 }
 
-.basketHeader {
+.basket-header {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 70px;
-  box-shadow: inset 0px 10px 20px -12px rgba(50, 50, 50, 0.75);
 }
 
-.basketTitle {
+.basket-title {
   font-weight: 500;
   color: #333;
 }
@@ -28,11 +26,9 @@
   gap: 2px;
   background-color: #f5f5f5;
   padding: 2px;
-  border-radius: 8px;
+  border-radius: 50px;
   margin: 15px;
-  width: calc(
-    100% - 30px
-  ); 
+  width: calc(100% - 30px);
 }
 
 .option {
@@ -41,7 +37,7 @@
   align-items: center;
   padding: 12px;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 50px;
   transition: all 0.3s ease;
 }
 
@@ -74,6 +70,7 @@
 .option-subtitle {
   font-size: 12px;
   color: #666;
+  font-weight: 400;
 }
 
 .delivery.active .option-title,
@@ -81,7 +78,6 @@
   color: #ff4d4d;
 }
 
-/* Warenkorb Inhalt */
 .basket-content {
   flex: 1;
   overflow-y: auto;
@@ -182,3 +178,65 @@
   margin: 0;
   font-size: 14px;
 }
+
+.mobile-basket-button {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fa8e00;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mobile-basket-button:hover {
+  background-color: #e98502;
+  transform: translateX(-50%) scale(1.02);
+}
+
+.mobile-basket-button .total-amount {
+  font-weight: 400;
+}
+
+.mobile-basket-dialog {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 2000;
+  flex-direction: column;
+}
+
+.mobile-basket-dialog.active {
+  display: flex;
+}
+
+.mobile-basket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.close-dialog {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+}
+

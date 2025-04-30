@@ -1,0 +1,72 @@
+@media (max-width: 1000px) {
+  .basket-section {
+    display: none;
+  }
+
+  .mobile-basket-button {
+    display: flex;
+    width: calc(100% - 50px);
+  }
+
+  .content-wrapper {
+    width: 100%;
+  }
+
+  .delivery-options {
+    width: calc(100% - 32px);
+    margin: 16px;
+  }
+
+  .footer-container {
+    height: 150px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+
+  .menu-bar {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  .restaurant-name {
+    font-size: 50px;
+  }
+
+  .menu-bar {
+    gap: 30px;
+  }
+
+  .menu-bar-link {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .restaurant-name {
+    font-size: 40px;
+  }
+
+  .menu-bar {
+    gap: 20px;
+  }
+
+  .section-picture {
+    height: 150px;
+  }
+}
+
+@media (max-width: 450px) {
+  .restaurant-name {
+    font-size: 30px;
+  }
+
+  .menu-bar {
+    gap: 10px;
+  }
+
+  .menu-bar-link {
+    font-size: 16px;
+  }
+}

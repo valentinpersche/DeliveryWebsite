@@ -7,6 +7,7 @@ function init() {
         .map((section) => getSectionTemplate(section))
         .join("");
     loadFromLocalStorage();
+    updateMobileBasketButton();
 }
 
 function saveToLocalStorage() {
@@ -50,7 +51,36 @@ function updateDeliveryOptionUI() {
 
 function selectDeliveryOption(option) {
     isDelivery = option === 'delivery';
-    updateDeliveryOptionUI();
+    
+    // Update Desktop Warenkorb
+    const desktopDeliveryOption = document.querySelector('#desktopDeliveryOptions .option.delivery');
+    const desktopCollectionOption = document.querySelector('#desktopDeliveryOptions .option.collection');
+    
+    // Update Dialog Warenkorb
+    const dialogDeliveryOption = document.querySelector('#mobileDeliveryOptions .option.delivery');
+    const dialogCollectionOption = document.querySelector('#mobileDeliveryOptions .option.collection');
+    
+    // Update both desktop and mobile options
+    [desktopDeliveryOption, dialogDeliveryOption].forEach(option => {
+        if (option) {
+            if (isDelivery) {
+                option.classList.add('active');
+            } else {
+                option.classList.remove('active');
+            }
+        }
+    });
+
+    [desktopCollectionOption, dialogCollectionOption].forEach(option => {
+        if (option) {
+            if (isDelivery) {
+                option.classList.remove('active');
+            } else {
+                option.classList.add('active');
+            }
+        }
+    });
+    
     updateBasket();
     saveToLocalStorage();
 }
@@ -98,18 +128,37 @@ function updateItemQuantity(index) {
 
 function updateBasket() {
     const basketContent = document.getElementById('basketContent');
-    if (!basketContent) return;
+    const mobileBasketContent = document.getElementById('mobileBasketContent');
+    const basketHTML = generateBasketHTML();
     
-    basketContent.innerHTML = generateBasketHTML();
+    if (basketContent) basketContent.innerHTML = basketHTML;
+    if (mobileBasketContent) mobileBasketContent.innerHTML = basketHTML;
+    
+    updateMobileBasketButton();
 }
 
 function generateBasketHTML() {
     if (basket.length === 0) {
         return generateEmptyBasketHTML();
     }
+
+    const { subtotal, delivery, total } = calculateTotals();
+    
     return `
-        ${generateBasketItemsHTML()}
-        ${generateBasketSummaryHTML()}
+        <div class="basket-items">
+            ${basket.map(item => generateBasketItemHTML(item)).join('')}
+        </div>
+        <div class="basket-summary">
+            <div class="summary-row">
+                <span>Zwischensumme:</span>
+                <span>${subtotal.toFixed(2)} €</span>
+            </div>
+            ${generateDeliveryCostHTML(delivery)}
+            <div class="summary-row total">
+                <span>Gesamt:</span>
+                <span>${total.toFixed(2)} €</span>
+            </div>
+        </div>
     `;
 }
 
@@ -121,14 +170,6 @@ function generateEmptyBasketHTML() {
             <p>Füllen Sie den Warenkorb</p>
         </div>
     `;
-}
-
-function generateBasketItemsHTML() {
-    let html = '<div class="basket-items">';
-    basket.forEach(item => {
-        html += generateBasketItemHTML(item);
-    });
-    return html + '</div>';
 }
 
 function generateBasketItemHTML(item) {
@@ -147,22 +188,13 @@ function generateBasketItemHTML(item) {
     `;
 }
 
-function generateBasketSummaryHTML() {
-    const { subtotal, delivery, total } = calculateTotals();
-    
-    return `
-        <div class="basket-summary">
-            <div class="summary-row">
-                <span>Zwischensumme:</span>
-                <span>${subtotal.toFixed(2)} €</span>
-            </div>
-            ${generateDeliveryCostHTML(delivery)}
-            <div class="summary-row total">
-                <span>Gesamt:</span>
-                <span>${total.toFixed(2)} €</span>
-            </div>
+function generateDeliveryCostHTML(delivery) {
+    return isDelivery ? `
+        <div class="summary-row">
+            <span>Lieferkosten:</span>
+            <span>${DELIVERY_COST.toFixed(2)} €</span>
         </div>
-    `;
+    ` : '';
 }
 
 function calculateTotals() {
@@ -172,11 +204,23 @@ function calculateTotals() {
     return { subtotal, delivery, total };
 }
 
-function generateDeliveryCostHTML(delivery) {
-    return isDelivery ? `
-        <div class="summary-row">
-            <span>Lieferkosten:</span>
-            <span>${DELIVERY_COST.toFixed(2)} €</span>
-        </div>
-    ` : '';
+function updateMobileBasketButton() {
+    const button = document.querySelector('.mobile-basket-button');
+    const { total } = calculateTotals();
+    if (basket.length > 0) {
+        button.querySelector('.total-amount').textContent = `${total.toFixed(2)} €`;
+    } else {
+        button.querySelector('.total-amount').textContent = '';
+    }
+}
+
+function openMobileBasket() {
+    document.querySelector('.mobile-basket-dialog').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    updateBasket();
+}
+
+function closeMobileBasket() {
+    document.querySelector('.mobile-basket-dialog').classList.remove('active');
+    document.body.style.overflow = '';
 }

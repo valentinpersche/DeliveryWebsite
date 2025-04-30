@@ -1,72 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Papa Mario's Cucina</title>
-    <link rel="stylesheet" href="style.css" />
     <link
       rel="shortcut icon"
       href="assets/img/Favicon/favicon.ico"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="styles/assets.css" />
     <link rel="stylesheet" href="styles/standard.css" />
     <link rel="stylesheet" href="styles/basket.css" />
     <link rel="stylesheet" href="styles/fonts.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
     <script src="script.js"></script>
     <script src="scripts/db.js"></script>
     <script src="scripts/template.js"></script>
   </head>
   <body onload="init()">
-    <header class="headerContainer">
-      <img src="assets/img/Logo/Logo.png" alt="Logo" class="headerLogo" />
+    <header class="header-container">
+      <img src="assets/img/Logo/Logo.png" alt="Papa Mario's Cucina Logo" class="header-logo" />
     </header>
-    <main class="mainContainer">
-        <div class="contentWrapper" id="contentWrapper">
-        <section class="restaurantInfo">
-            <img class="restaurantPicture" src="assets/img/restaurantPicture.jpg" alt="">
-            <img class="restaurantLogo" src="assets/img/restaurantLogo.png" alt="">
-            <h1 class="restaurantName">Papa Mario's Cucina</h1>
+    <main class="main-container">
+      <div class="content-wrapper" id="contentWrapper">
+        <section class="restaurant-info">
+          <img
+            class="restaurant-picture"
+            src="assets/img/restaurantPicture.jpg"
+            alt=""
+          />
+          <img
+            class="papa-mario-logo"
+            src="assets/img/restaurantLogo.png"
+            alt="Papa Mario"
+          />
+          <h1 class="restaurant-name">Papa Mario's Cucina</h1>
         </section>
-        <section class="menueBar">
-            <a href="#pastaSection" class="menueBarLink">Pasta</a>
-            <a href="#pizzaSection" class="menueBarLink">Pizza</a>
-            <a href="#saladSection" class="menueBarLink">Salate</a>
-            <a href="#drinkSection" class="menueBarLink">Getränke</a>
+        <section class="menu-bar">
+          <a href="#pastaSection" class="menu-bar-link">Pasta</a>
+          <a href="#pizzaSection" class="menu-bar-link">Pizza</a>
+          <a href="#saladSection" class="menu-bar-link">Salate</a>
+          <a href="#drinkSection" class="menu-bar-link">Getränke</a>
         </section>
-        <section class="menuSection" id="menuSection">
-        </section>
+        <section class="menu-section" id="menuSection"></section>
+      </div>
+      <section class="basket-section" id="basketSection">
+        <div class="basket-header">
+          <h1 class="basket-title">Warenkorb</h1>
         </div>
-        <section class="basketSection" id="basketSection">
-            <div class="basketHeader">
-                <h1 class="basketTitle">Warenkorb</h1>
+        <div class="delivery-options" id="desktopDeliveryOptions">
+          <div
+            class="option delivery active"
+            onclick="selectDeliveryOption('delivery')"
+          >
+            <div class="option-icon">🛵</div>
+            <div class="option-details">
+              <div class="option-title">Lieferung</div>
+              <div class="option-subtitle">20-40 min</div>
             </div>
-            <div class="pickupSwitcher">
-                <div class="delivery-options">
-                    <div class="option delivery active" onclick="selectDeliveryOption('delivery')">
-                        <div class="option-icon">🛵</div>
-                        <div class="option-details">
-                            <div class="option-title">Lieferung</div>
-                            <div class="option-subtitle">20-40 min</div>
-                        </div>
-                    </div>
-                    <div class="option collection" onclick="selectDeliveryOption('collection')">
-                        <div class="option-icon">🏪</div>
-                        <div class="option-details">
-                            <div class="option-title">Abholen</div>
-                            <div class="option-subtitle">Verfügbar</div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div
+            class="option collection"
+            onclick="selectDeliveryOption('collection')"
+          >
+            <div class="option-icon">🏪</div>
+            <div class="option-details">
+              <div class="option-title">Abholen</div>
+              <div class="option-subtitle">Verfügbar</div>
             </div>
-            <div id="basketContent" class="basket-content">
-                
-            </div>
-        </section>
+          </div>
+        </div>
+        <div id="basketContent" class="basket-content"></div>
+      </section>
     </main>
-    <footer class="footerContainer">
-        <h1 class="footerTitle">Papa Mario's Cucina</h1>
+    <button class="mobile-basket-button" onclick="openMobileBasket()">
+      Warenkorb <span class="total-amount"></span>
+    </button>
+    <div class="mobile-basket-dialog">
+      <div class="mobile-basket-header">
+        <h2>Warenkorb</h2>
+        <button class="close-dialog" onclick="closeMobileBasket()">×</button>
+      </div>
+      <div class="delivery-options" id="mobileDeliveryOptions">
+        <div
+          class="option delivery active"
+          onclick="selectDeliveryOption('delivery')"
+        >
+          <div class="option-icon">🛵</div>
+          <div class="option-details">
+            <div class="option-title">Lieferung</div>
+            <div class="option-subtitle">20-40 min</div>
+          </div>
+        </div>
+        <div
+          class="option collection"
+          onclick="selectDeliveryOption('collection')"
+        >
+          <div class="option-icon">🏪</div>
+          <div class="option-details">
+            <div class="option-title">Abholen</div>
+            <div class="option-subtitle">Verfügbar</div>
+          </div>
+        </div>
+      </div>
+      <div id="mobileBasketContent" class="basket-content"></div>
+    </div>
+    <footer class="footer-container">
+      <h1 class="footer-title">Papa Mario's Cucina</h1>
     </footer>
   </body>
 </html>

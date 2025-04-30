@@ -1,33 +1,34 @@
-.headerContainer {
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   background-color: #fa8e00;
   height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 15px -3px;
 }
 
-.mainContainer {
+.main-container {
   display: flex;
 }
 
-.contentWrapper {
+.content-wrapper {
   width: calc(100% - 300px);
   overflow: hidden;
 }
-.restaurantInfo {
+.restaurant-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: auto;
 }
 
-.restaurantName {
+.restaurant-name {
   font-size: 60px;
   padding-top: 60px;
 }
 
-.menueBar {
+.menu-bar {
   display: flex;
   gap: 60px;
   justify-content: center;
@@ -36,7 +37,7 @@
   height: 40px;
 }
 
-.menueBarLink {
+.menu-bar-link {
   text-decoration: none;
   color: black;
   font-size: 24px;
@@ -44,7 +45,7 @@
   padding: 4px;
 }
 
-.menueBarLink:hover {
+.menu-bar-link:hover {
   background: linear-gradient(
     to right,
     green 33.33%,
@@ -54,23 +55,23 @@
   border-radius: 3px;
 }
 
-.dishCard {
-  margin: 20px 30px 20px 30px;
+.dish-card {
+  margin: 10px 30px 10px 30px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 1px 0px,
     rgba(0, 0, 0, 0.3) 0px 1px 5px 0px, rgba(0, 0, 0, 0.2) 0px 0px 4px 0px;
   border-radius: 10px;
   padding: 10px;
 }
 
-.dishCard:hover {
+.dish-card:hover {
   background-color: rgb(245, 245, 245);
 }
-.dishCardButtonContainer {
+.dish-card-button-container {
   display: flex;
   justify-content: flex-end;
 }
 
-.dishCardButton {
+.dish-card-button {
   border: none;
   background-color: white;
   font-size: 18px;
@@ -86,33 +87,34 @@
   align-items: center;
 }
 
-.dishCardButton:hover {
+.dish-card-button:hover {
   background-color: rgb(240, 240, 240);
 }
 
-.dishCardTitle {
+.dish-card-title {
   font-size: 20px;
   font-weight: 500;
 }
 
-.dishCardDescription {
+.dish-card-description {
   padding-top: 5px;
   font-size: 18px;
 }
 
-.dishCardPrice {
+.dish-card-price {
   padding-top: 10px;
   color: #fa8e00;
   font-size: 18px;
   font-weight: 400;
 }
 
-
-.footerContainer {
+.footer-container {
   width: 100%;
   height: 70px;
-  background-color: #fa8e00;
+  background-color: #eeedea;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
+
