@@ -18,6 +18,7 @@ function saveToLocalStorage() {
 function loadFromLocalStorage() {
     loadBasketFromStorage();
     loadDeliveryOptionFromStorage();
+    loadDeliveryAddress();
     updateBasket();
 }
 
@@ -36,6 +37,16 @@ function loadDeliveryOptionFromStorage() {
     }
 }
 
+function loadDeliveryAddress() {
+    const savedAddress = localStorage.getItem('deliveryAddress');
+    if (savedAddress) {
+        const addressInputs = document.querySelectorAll('#deliveryAddress');
+        addressInputs.forEach(input => {
+            input.value = savedAddress;
+        });
+    }
+}
+
 function updateDeliveryOptionUI() {
     const deliveryOption = document.querySelector('.option.delivery');
     const collectionOption = document.querySelector('.option.collection');
@@ -49,38 +60,34 @@ function updateDeliveryOptionUI() {
     }
 }
 
-function selectDeliveryOption(option) {
-    isDelivery = option === 'delivery';
-    
-    // Update Desktop Warenkorb
+function updateDeliveryOptionState(option, isActive) {
+    if (option) {
+        if (isActive) {
+            option.classList.add('active');
+        } else {
+            option.classList.remove('active');
+        }
+    }
+}
+
+function updateDeliveryOptions() {
     const desktopDeliveryOption = document.querySelector('#desktopDeliveryOptions .option.delivery');
     const desktopCollectionOption = document.querySelector('#desktopDeliveryOptions .option.collection');
-    
-    // Update Dialog Warenkorb
     const dialogDeliveryOption = document.querySelector('#mobileDeliveryOptions .option.delivery');
     const dialogCollectionOption = document.querySelector('#mobileDeliveryOptions .option.collection');
     
-    // Update both desktop and mobile options
     [desktopDeliveryOption, dialogDeliveryOption].forEach(option => {
-        if (option) {
-            if (isDelivery) {
-                option.classList.add('active');
-            } else {
-                option.classList.remove('active');
-            }
-        }
+        updateDeliveryOptionState(option, isDelivery);
     });
 
     [desktopCollectionOption, dialogCollectionOption].forEach(option => {
-        if (option) {
-            if (isDelivery) {
-                option.classList.remove('active');
-            } else {
-                option.classList.add('active');
-            }
-        }
+        updateDeliveryOptionState(option, !isDelivery);
     });
-    
+}
+
+function selectDeliveryOption(option) {
+    isDelivery = option === 'delivery';
+    updateDeliveryOptions();
     updateBasket();
     saveToLocalStorage();
 }
@@ -129,7 +136,7 @@ function updateItemQuantity(index) {
 function updateBasket() {
     const basketContent = document.getElementById('basketContent');
     const mobileBasketContent = document.getElementById('mobileBasketContent');
-    const basketHTML = generateBasketHTML();
+    const basketHTML = generateBasketHTML(basket, isDelivery, DELIVERY_COST);
     
     if (basketContent) basketContent.innerHTML = basketHTML;
     if (mobileBasketContent) mobileBasketContent.innerHTML = basketHTML;
@@ -137,69 +144,9 @@ function updateBasket() {
     updateMobileBasketButton();
 }
 
-function generateBasketHTML() {
-    if (basket.length === 0) {
-        return generateEmptyBasketHTML();
-    }
-
-    const { subtotal, delivery, total } = calculateTotals();
-    
-    return `
-        <div class="basket-items">
-            ${basket.map(item => generateBasketItemHTML(item)).join('')}
-        </div>
-        <div class="basket-summary">
-            <div class="summary-row">
-                <span>Zwischensumme:</span>
-                <span>${subtotal.toFixed(2)} €</span>
-            </div>
-            ${generateDeliveryCostHTML(delivery)}
-            <div class="summary-row total">
-                <span>Gesamt:</span>
-                <span>${total.toFixed(2)} €</span>
-            </div>
-        </div>
-    `;
-}
-
-function generateEmptyBasketHTML() {
-    return `
-        <div class="empty-basket">
-            <div class="empty-basket-icon">🛒</div>
-            <h3>Der Warenkorb ist leer</h3>
-            <p>Füllen Sie den Warenkorb</p>
-        </div>
-    `;
-}
-
-function generateBasketItemHTML(item) {
-    return `
-        <div class="basket-item">
-            <div class="basket-item-info">
-                <span class="basket-item-name">${item.name}</span>
-                <span class="basket-item-price">${(item.price * item.quantity).toFixed(2)} €</span>
-            </div>
-            <div class="basket-item-controls">
-                <button onclick="removeFromBasket('${item.category}', ${item.itemIndex})">-</button>
-                <span>${item.quantity}</span>
-                <button onclick="addToBasket('${item.category}', ${item.itemIndex})">+</button>
-            </div>
-        </div>
-    `;
-}
-
-function generateDeliveryCostHTML(delivery) {
-    return isDelivery ? `
-        <div class="summary-row">
-            <span>Lieferkosten:</span>
-            <span>${DELIVERY_COST.toFixed(2)} €</span>
-        </div>
-    ` : '';
-}
-
 function calculateTotals() {
     const subtotal = basket.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const delivery = isDelivery ? DELIVERY_COST : 0;
+    const delivery = isDelivery?  DELIVERY_COST : 0;
     const total = subtotal + delivery;
     return { subtotal, delivery, total };
 }
@@ -223,4 +170,60 @@ function openMobileBasket() {
 function closeMobileBasket() {
     document.querySelector('.mobile-basket-dialog').classList.remove('active');
     document.body.style.overflow = '';
+}
+
+function removeItemFromBasket(category, itemIndex) {
+    const itemToRemove = basket.findIndex(item => 
+        item.category === category && item.itemIndex === itemIndex
+    );
+    
+    if (itemToRemove !== -1) {
+        basket.splice(itemToRemove, 1);
+        updateBasket();
+        saveToLocalStorage();
+    }
+}
+
+function placeOrder() {
+    const message = isDelivery 
+        ? 'Wir haben Ihre Bestellung erhalten, die Lieferung ist in Kürze auf dem Weg'
+        : 'Wir haben Ihre Bestellung erhalten, Sie können sie in 20 Minuten vor Ort abholen';
+
+    basket = [];
+    saveToLocalStorage();
+    
+    updateBasket();
+    
+    const desktopMessage = document.querySelector('#basketContent #orderMessage');
+    const mobileMessage = document.querySelector('#mobileBasketContent #orderMessage');
+    
+    if (desktopMessage) {
+        desktopMessage.textContent = message;
+        desktopMessage.style.display = 'block';
+    }
+    
+    if (mobileMessage) {
+        mobileMessage.textContent = message;
+        mobileMessage.style.display = 'block';
+    }
+}
+
+function saveDeliveryAddress() {
+    const addressInputs = document.querySelectorAll('#deliveryAddress');
+    let addressSaved = false;
+
+    addressInputs.forEach(input => {
+        if (input && input.value.trim() !== '') {
+            localStorage.setItem('deliveryAddress', input.value.trim());
+            addressSaved = true;
+        }
+    });
+
+    if (addressSaved) {
+        const messageElements = document.querySelectorAll('#orderMessage');
+        messageElements.forEach(element => {
+            element.textContent = 'Adresse wurde gespeichert';
+            element.style.display = 'block';
+        });
+    }
 }

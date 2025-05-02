@@ -117,8 +117,8 @@
 }
 
 .basket-item-controls button {
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 44px;
   border: none;
   border-radius: 50%;
   background-color: #f5f5f5;
@@ -129,6 +129,7 @@
   font-size: 16px;
   color: #666;
 }
+
 
 .basket-item-controls button:hover {
   background-color: #e0e0e0;
@@ -235,7 +236,7 @@
 .close-dialog {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 44px;
   cursor: pointer;
   padding: 8px;
 }

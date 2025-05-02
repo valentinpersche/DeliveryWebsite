@@ -10,11 +10,15 @@
 
 .main-container {
   display: flex;
+  justify-content: center;
 }
 
 .content-wrapper {
   width: calc(100% - 300px);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .restaurant-info {
   display: flex;
@@ -45,6 +49,11 @@
   padding: 4px;
 }
 
+.menu-bar-link-contrast {
+  font-size: 24px;
+  font-weight: 500;
+}
+
 .menu-bar-link:hover {
   background: linear-gradient(
     to right,
@@ -53,6 +62,10 @@
     rgb(190, 0, 0) 66.66%
   );
   border-radius: 3px;
+}
+
+.menu-bar-link:hover .menu-bar-link-contrast {
+  color: white;
 }
 
 .dish-card {
@@ -74,14 +87,14 @@
 .dish-card-button {
   border: none;
   background-color: white;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 400;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.3);
   color: #fa8e00;
   cursor: pointer;
-  height: 22px;
-  width: 22px;
+  height: 44px;
+  width: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,4 +130,68 @@
   align-items: center;
   flex-direction: column;
 }
+
+.order-button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #fa8e00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.order-button:hover {
+    background-color: #e67e00;
+}
+
+.order-message {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    min-height: 20px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+    display: none;
+}
+
+.address-input {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.address-field {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.save-address-button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.save-address-button:hover {
+    background-color: #45a049;
+}
+
+
+
 
