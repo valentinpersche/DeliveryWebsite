@@ -84,10 +84,6 @@
   padding: 15px;
 }
 
-.basket-items {
-  margin-bottom: 20px;
-}
-
 .basket-item {
   display: flex;
   justify-content: space-between;
@@ -130,28 +126,8 @@
   color: #666;
 }
 
-
 .basket-item-controls button:hover {
   background-color: #e0e0e0;
-}
-
-.basket-summary {
-  border-top: 2px solid #eee;
-  padding-top: 15px;
-}
-
-.summary-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.summary-row.total {
-  font-weight: 600;
-  font-size: 1.1em;
-  margin-top: 15px;
-  border-top: 1px solid #eee;
-  padding-top: 15px;
 }
 
 .empty-basket {
@@ -178,6 +154,10 @@
 .empty-basket p {
   margin: 0;
   font-size: 14px;
+}
+
+.basket-totals{
+  margin-top: 15px;
 }
 
 .mobile-basket-button {

@@ -20,19 +20,6 @@ function getSectionTemplate(section) {
     `;
 }
 
-function getItemTemplate(item, category, index) {
-    return `
-        <div class="menu-item">
-            <div class="item-info">
-                <h3 class="item-name">${item.name}</h3>
-                <p class="item-description">${item.description}</p>
-                <span class="item-price">${item.price.toFixed(2)} €</span>
-            </div>
-            <button class="add-to-basket" onclick="addToBasket('${category}', ${index})">+</button>
-        </div>
-    `;
-}
-
 function generateBasketHTML(basket, isDelivery, deliveryCost) {
     if (basket.length === 0) {
         return generateEmptyBasketHTML();
@@ -93,31 +80,4 @@ function generateEmptyBasketHTML() {
         </div>
         <div id="orderMessage" class="order-message"></div>
     `;
-}
-
-function generateBasketItemHTML(item) {
-    return `
-        <div class="basket-item">
-            <div class="basket-item-info">
-                <span class="basket-item-name">${item.name}</span>
-                <span class="basket-item-price">${(item.price * item.quantity).toFixed(2)} €</span>
-            </div>
-            <div class="basket-item-controls">
-                <button onclick="removeItemFromBasket('${item.category}', ${item.itemIndex})">🗑️</button>
-                <button onclick="removeFromBasket('${item.category}', ${item.itemIndex})">-</button>
-                <span>${item.quantity}</span>
-                <button onclick="addToBasket('${item.category}', ${item.itemIndex})">+</button>
-                
-            </div>
-        </div>
-    `;
-}
-
-function generateDeliveryCostHTML(isDelivery, DELIVERY_COST) {
-    return isDelivery ? `
-        <div class="summary-row">
-            <span>Lieferkosten:</span>
-            <span>${DELIVERY_COST.toFixed(2)} €</span>
-        </div>
-    ` : '';
 }

@@ -82,6 +82,7 @@
 .dish-card:hover {
   background-color: rgb(245, 245, 245);
 }
+
 .dish-card-button-container {
   display: flex;
   justify-content: flex-end;
